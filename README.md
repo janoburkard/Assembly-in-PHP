@@ -26,4 +26,4 @@ Em segundo lugar as pessoas que me incentivaram a publicar este código.
 * Alexandra Percário
 * Osmany Arruda
 * Júlio Della Flora
-* Alexandro Borges
+* Alexandre Borges
