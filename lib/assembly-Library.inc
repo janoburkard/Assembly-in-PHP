@@ -24,6 +24,7 @@ class assembly {
      -EDI: DESTINATION INDEX (registrador de índice que aponta para o destino dos dados que serão movimentados). Assim como o SI, o registrador DI é utilizado para a indexação no endereçamento indireto.
      
      Registradores de Flags:
+     -PF (Parity flag): indica se o número de bits definidos é ímpar ou par na representação binária do resultado da última operação. Bit (1 = Par, 0 = impar).
      -ZF (Zero Flag): indica se o resultado de uma operação aritmética é igual a zero (1) ou diferente de zero (0). Se numa operação os valores são iguais o ZF = 1.
      -SF (Sign Flag): indica se o resultado de uma operação com sinal é positivo (0), em caso contrário (1).
      -TF (Trap Flag): permite a operação “passo a passo” para debug.
@@ -684,16 +685,12 @@ class assembly {
 	{
 	      // Verifica se existe um número par ou ímpar de bits setados
 	      
-	      $tot = 0;
 		$bin = decbin($number & 0xFF); // Paridade é feito apenas em um byte, por isto utilizado mascara
-		for($i = 0; $i < strlen($bin); $i++)
-			if($bin[$i] == "1") $tot++;
+		$bin = str_pad($bin , 8, "0", STR_PAD_LEFT);
 		
-		$parity = 0;
-		if($tot == 0)
-			$parity = 1;
-		else if( ($tot > 0) && ($tot % 2 ==0) )
-		 $parity = 1;
+		$parity = "1";
+		for($i = 0; $i < strlen($bin); $i++)
+		    $parity   ^= $bin[$i];
 		
 		return( $parity );
 	}
