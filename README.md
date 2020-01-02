@@ -10,7 +10,7 @@ Lista de Opcodes implementados: PUSH, POP, NOP, MOV, CMP, CMC, CLC, NOP, ADD, SU
 
 ## História
 
-Durante a Engenharia Reversa de um software de monitoramento de DVRs (Gravador de vídeo para CFTV) foi possível identificar a função responsável que gera a Hash das senhas do dispositivo. Como o conjunto de instruções era muito longo e possível mente o tempo gasto para entender e reescrever a rotina também seria, achei interessante para este e outros projetos, ter uma biblioteca que permiti-se **simular** a execução de um conjunto de instruções x86.
+Durante a Engenharia Reversa de um software de monitoramento de DVRs (Gravador de vídeo para CFTV) foi possível identificar a função responsável que gera a Hash das senhas do dispositivo. Como o conjunto de instruções era muito longo e possivelmente o tempo gasto para entender e reescrever a rotina também seria, achei interessante para este e outros projetos, ter uma biblioteca que permitisse **simular** a execução de um conjunto de instruções x86.
 
 Durante a Palestra "[Firmware Hacking](https://www.linkedin.com/posts/jan%C3%B4-falkowski-burkard-514248a0_palestra-firmware-hacking-apresentada-no-activity-6607810092978982912-V3P7)" na BHack 2019 foi apresentada uma idéia do que seria este projeto.
 
@@ -26,4 +26,4 @@ Em segundo lugar as pessoas que me incentivaram a publicar este código.
 * Alexandra Percário
 * Osmany Arruda
 * Júlio Della Flora
-* Alexandro Borges
+* Alexandre Borges
