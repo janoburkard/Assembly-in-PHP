@@ -6,7 +6,7 @@ Quando falamos em rodar instruções Assembly em PHP, você poderia usar C para 
 
 Fugindo do pensamento comum escrevi uma biblioteca usando apenas PHP.
 
-Lista de Opcodes implementados: PUSH, POP, NOP, MOV, CMP, CMC, CLC, NOP, ADD, SUB, INC, **AND**, **OR**, **XOR**, NOT, NEG, ROL, ROR, SHR, SHL, LEA.
+Lista de Opcodes implementados: PUSH, POP, NOP, MOV, CMP, CMC, CLC, NOP, ADD, SUB, INC, **AND**, **OR**, **XOR**, TEST, NOT, NEG, ROL, ROR, SHR, SHL, LEA.
 
 ## História
 

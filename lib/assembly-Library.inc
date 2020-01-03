@@ -1294,6 +1294,47 @@ class assembly {
 		if ($this->check_parity($this->get_register($dest) & $bitmask)) $this->set_flag_parity(1); else $this->set_flag_parity(0);
 		 
 	}
+	
+	function TEST( $source1 , $source2 )
+	{
+
+		// Ao fazer um bit binário de um valor de mais de 31bits da problema.
+		// Para manipular os 32 bits sem levar em conta o sinal, foi criada esta abordagem.
+         
+		$abin  =  str_pad( base_convert( $this->get_register($source1) ,10,2) , 32, '0', STR_PAD_LEFT);
+		$bbin  =  str_pad( base_convert( $this->get_register($source2) ,10,2) , 32, '0', STR_PAD_LEFT);
+	
+		$abin3 = base_convert( substr($abin,0,8) , 2, 2);
+		$abin2 = base_convert( substr($abin,8,8), 2, 2);
+		$abin1 = base_convert( substr($abin,16,8) , 2, 2);
+		$abin0 = base_convert( substr($abin,24), 2, 2);
+
+		$bbin3 = base_convert( substr($bbin,0,8) , 2, 2);
+		$bbin2 = base_convert( substr($bbin,8,8), 2, 2);
+		$bbin1 = base_convert( substr($bbin,16,8) , 2, 2);
+		$bbin0 = base_convert( substr($bbin,24), 2, 2);
+	
+		$byte3 = decbin(bindec($abin3) & bindec($bbin3));
+		$byte2 = decbin(bindec($abin2) & bindec($bbin2));
+		$byte1 = decbin(bindec($abin1) & bindec($bbin1));
+		$byte0 = decbin(bindec($abin0) & bindec($bbin0));
+	
+		$value = bindec( str_pad( $byte3 ,8, '0', STR_PAD_LEFT).str_pad( $byte2 ,8, '0', STR_PAD_LEFT).str_pad( $byte1 ,8, '0', STR_PAD_LEFT).str_pad( $byte0 ,8, '0', STR_PAD_LEFT) );
+                
+                // fim da abordagem
+                
+                
+		// Obtem o bit mais significativo
+      		$MSB = ( $value & 0x80000000) ? 1 : 0 ;      		
+      		$this->set_flag_signal( $MSB );
+		
+		$paridade = (check_parity( $value ) == "0") ? 0 : 1;		
+		$this->set_flag_parity( $paridade );	
+				
+		$this->set_flag_carry(0);
+		$this->set_flag_overflow(0);
+		// AF = Undefined  // Criar flag no futuro
+	}
 
 	function NOT($dest)
 	{
