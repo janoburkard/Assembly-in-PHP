@@ -1321,14 +1321,21 @@ class assembly {
 	
 		$value = bindec( str_pad( $byte3 ,8, '0', STR_PAD_LEFT).str_pad( $byte2 ,8, '0', STR_PAD_LEFT).str_pad( $byte1 ,8, '0', STR_PAD_LEFT).str_pad( $byte0 ,8, '0', STR_PAD_LEFT) );
                 
+                echo "{$value}\r\n";
+                
                 // fim da abordagem
                 
+                $this->getMASK($source1, $mascara1, $bitmask1); // Carrega mascaras de bits para overflow e bitmask de acordo com o tipo do registrador
+                $this->getMASK($source2, $mascara2, $bitmask2); // Carrega mascaras de bits para overflow e bitmask de acordo com o tipo do registrador
+		                
+                if($mascara1 <> $mascara2) 
+                  die("ATENÇÃO: A quantidade de bits de Source1 e Source2 são diferentes.");
                 
 		// Obtem o bit mais significativo
-      		$MSB = ( $value & 0x80000000) ? 1 : 0 ;      		
+      		$MSB = ( $value & $mascara1) ? 1 : 0 ;      		
       		$this->set_flag_signal( $MSB );
 		
-		$paridade = (check_parity( $value ) == "0") ? 0 : 1;		
+		$paridade = ($this->check_parity( $value ) == "0") ? 0 : 1;		
 		$this->set_flag_parity( $paridade );	
 				
 		$this->set_flag_carry(0);
